@@ -16,8 +16,7 @@ export const ProductList = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null); // 👈 modal
-const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(true);
 
   const loadProducts = async () => {
     try {
@@ -50,7 +49,7 @@ const [loading, setLoading] = useState(true);
     .filter(
       (p) =>
         p.name.toLowerCase().includes(searchInput.toLowerCase()) &&
-        searchInput !== ""
+        searchInput !== "",
     )
     .slice(0, 6);
 
@@ -74,7 +73,7 @@ const [loading, setLoading] = useState(true);
   const filtered = products.filter(
     (p) =>
       p.name.toLowerCase().includes(searchFilter.toLowerCase()) ||
-      p.type.toLowerCase().includes(searchFilter.toLowerCase())
+      p.type.toLowerCase().includes(searchFilter.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filtered.length / perPage);
@@ -104,10 +103,10 @@ const [loading, setLoading] = useState(true);
   const handleCancelEdit = () => {
     setEditingProduct(null);
   };
-if (loading) {
-  return <div className="loading-products">Cargando productos...</div>;
-}
 
+  if (loading) {
+    return <div className="loading-products">Cargando productos...</div>;
+  }
 
   return (
     <div className="products-container">
@@ -152,17 +151,31 @@ if (loading) {
           {filtered.length > 0 &&
             paginated.map((p) => (
               <div key={p.id} className="product-card">
-                <img src={p.image || "https://via.placeholder.com/200"} alt={p.name} />
+                {/* 🛠️ AJUSTE DE RUTA INTELIGENTE PARA IMÁGENES */}
+                <img
+                  src={
+                    p.image
+                      ? `http://localhost:3000/images/${p.image.replace(/^\/?(images\/)?/, "")}`
+                      : "https://via.placeholder.com/200"
+                  }
+                  alt={p.name}
+                />
                 <div className="product-card-body">
                   <div className="product-category">{p.type}</div>
                   <h3 className="product-name">{p.name}</h3>
                   <div className="product-price">${p.price}</div>
                 </div>
                 <div className="product-card-actions">
-                  <button className="btn btn-edit" onClick={() => handleEditClick(p)}>
+                  <button
+                    className="btn btn-edit"
+                    onClick={() => handleEditClick(p)}
+                  >
                     Editar
                   </button>
-                  <button className="btn btn-delete" onClick={() => handleDelete(p.id)}>
+                  <button
+                    className="btn btn-delete"
+                    onClick={() => handleDelete(p.id)}
+                  >
                     Eliminar
                   </button>
                 </div>
@@ -180,7 +193,10 @@ if (loading) {
           <span>
             Página {page} de {totalPages}
           </span>
-          <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+          <button
+            onClick={() => setPage(page + 1)}
+            disabled={page === totalPages}
+          >
             Siguiente ➡
           </button>
         </div>
@@ -188,7 +204,10 @@ if (loading) {
 
       {/* Botones flotantes */}
       <div className="floating-buttons">
-        <button className="floating-btn back-btn" onClick={() => window.history.back()}>
+        <button
+          className="floating-btn back-btn"
+          onClick={() => window.history.back()}
+        >
           🔙 Volver
         </button>
         <button className="floating-btn logout-btn" onClick={handleLogout}>
