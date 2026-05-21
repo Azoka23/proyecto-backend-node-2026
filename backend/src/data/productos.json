@@ -1,0 +1,47 @@
+[
+  {
+    "id": "2",
+    "type": "molido",
+    "name": "Blend de la Casa Oscuro",
+    "price": 15.75,
+    "description": "Edición premium con nuevo tostado.",
+    "stock": 100,
+    "image": "cafe2.jpg"
+  },
+  {
+    "id": "3",
+    "type": "capsulas",
+    "name": "Cápsulas Colombia Supremo",
+    "price": 5.99,
+    "description": "Cápsulas de intensidad media-alta, sabor a nuez y caramelo. Compatible con la mayoría de máquinas.",
+    "stock": 40,
+    "image": "cafe3.jpg"
+  },
+  {
+    "id": "1776276294975",
+    "type": "molido",
+    "name": "Café de Especialidad Brasil",
+    "price": 15.5,
+    "description": "Notas de caramelo y chocolate. Tostado artesanal.",
+    "stock": 10,
+    "image": "default.jpg"
+  },
+  {
+    "id": "1778238260471",
+    "type": "grano",
+    "name": "Café de Especialidad - Edición Marcela",
+    "price": 18.5,
+    "description": "Un blend especial para programadores.",
+    "stock": 50,
+    "image": "default.jpg"
+  },
+  {
+    "id": "1778238695528",
+    "type": "grano",
+    "name": "Café Etiopía Yirgacheffe",
+    "price": 12.99,
+    "description": "Granos 100% Arábica con notas cítricas y florales. Tostado medio. Ideal para filtrado.",
+    "stock": 0,
+    "image": "cafe1.jpg"
+  }
+]

@@ -1,0 +1,64 @@
+/* src/components/Item/Item.css */
+
+
+.product-card {
+    width: 100%;
+     background-color: #f5f1e8 !important; /* Blanco cálido */
+    background-color: rgba(245, 241, 232, 0.9) ;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+    /* Layout */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Imagen */
+.product-card img {
+    width: 100%;
+    max-height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* Precio */
+.item-price {
+    font-size: 1.2em;
+    color: #b89f78; /* Oro apagado */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Botones */
+.add-button {
+    background-color: #8b5e3c; /* Cacao */
+    color: #faf9f6; /* Blanco cálido */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 5px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.add-button:hover:not(:disabled) {
+    background-color: #b89f78; /* Oro apagado */
+    transform: scale(1.05);
+}
+
+.add-button:disabled {
+    background-color: #A9A9A9;
+    cursor: not-allowed;
+}

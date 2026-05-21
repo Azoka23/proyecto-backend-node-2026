@@ -1,0 +1,20 @@
+[
+  {
+    "idVenta": "1776278454139",
+    "fecha": "4/15/2026, 3:40:54 PM",
+    "cliente": "Marcela",
+    "productos": [
+      {
+        "id": "1",
+        "name": "Café Etiopía",
+        "cant": 2
+      },
+      {
+        "id": "2",
+        "name": "Blend Oscuro",
+        "cant": 1
+      }
+    ],
+    "total": 35.48
+  }
+]

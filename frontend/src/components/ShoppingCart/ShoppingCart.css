@@ -1,0 +1,123 @@
+/* src/components/ShoppingCart/ShoppingCart.css */
+
+/* src/components/ShoppingCart/ShoppingCart.css */
+
+/* Código que ya tenías */
+.shopping-cart {
+
+
+
+  position: relative; 
+  margin-bottom: 60px; 
+  margin-left: auto;
+  margin-right: auto;
+  
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 30px; 
+  
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
+  
+  width: 95%;          
+  max-width: 750px; 
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- ESTILOS AGREGADOS PARA LOS CONTROLES DE LOS ÍTEMS --- */
+
+/* Asegura que cada ítem esté alineado */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
+    width: 100%; 
+}
+
+/* Contenedor de los 3 botones: Flex horizontal para alinearlos */
+.item-controls {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+    align-items: center;
+}
+
+/* Estilo para CADA botón de control (Quitar, Agregar, Eliminar) */
+.action-control {
+    /* 🛑 Convierte CADA BOTÓN en un Flexbox vertical */
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    
+    /* Estilos base del botón */
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+    /* Dimensiones para el contenido de texto y símbolo */
+    min-width: 60px; 
+    height: auto;
+    padding: 5px 2px; 
+}
+
+.action-control:hover {
+    background-color: #e0e0e0;
+}
+
+/* Estilo del SÍMBOLO (+, -, ❌) */
+.icon-symbol {
+    font-size: 1.2em; 
+    font-weight: bold;
+    line-height: 1; 
+    margin-bottom: 3px; 
+}
+
+/* Estilo del TEXTO descriptivo ("Quitar", "Agregar", "Eliminar") */
+.control-text {
+    font-size: 0.65em; 
+    line-height: 1; 
+    color: #333;
+    white-space: nowrap; /* Evita que el texto se rompa */
+}
+
+/* Estilo específico para el símbolo de eliminar */
+.remove-button .icon-symbol {
+    color: #a00; /* Color rojo para la X */
+}
+
+/* --- NUEVOS ESTILOS PARA LA IMAGEN Y ALINEACIÓN DE INFO --- */
+
+/* 1. Contenedor de Imagen y Texto: alineación horizontal */
+/* Permite que este contenedor use el espacio disponible a la izquierda */
+.item-info-wrapper {
+    flex-grow: 1; 
+    display: flex; 
+    align-items: center; /* Centra la imagen con el texto verticalmente */
+    gap: 10px; /* Espacio entre la imagen y el nombre */
+}
+
+/* 2. Estilo de la Imagen en Miniatura */
+.cart-item-thumbnail {
+    width: 60px; /* Tamaño de la imagen */
+    height: 60px;
+    object-fit: cover; /* Asegura que la imagen se vea bien sin distorsionarse */
+    border-radius: 4px; 
+    border: 1px solid #ccc;
+}
+
+/* 3. Ajuste al Contenedor de Texto */
+.item-info {
+    /* Aquí se contienen el nombre y el precio/cantidad (uno debajo del otro) */
+    display: flex;
+    flex-direction: column; 
+}
+
+
+

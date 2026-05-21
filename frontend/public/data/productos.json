@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",  
+    "type": "grano",
+    "name": "Café Etiopía Yirgacheffe",
+    "price": 12.99,
+    "description": "Granos 100% Arábica con notas cítricas y florales. Tostado medio. Ideal para filtrado.",
+    "stock": 0,
+    "image": "cafe1.jpg"
+  },
+  {
+    "id": "2",  
+    "type": "molido",
+    "name": "Blend de la Casa Oscuro",
+    "price": 9.50,
+    "description": "Una mezcla robusta con cuerpo completo y notas de chocolate amargo. Molido fino.",
+    "stock": 25,
+    "image": "cafe2.jpg"
+  },
+  {
+    "id": "3",  
+    "type": "capsulas",
+    "name": "Cápsulas Colombia Supremo",
+    "price": 5.99,
+    "description": "Cápsulas de intensidad media-alta, sabor a nuez y caramelo. Compatible con la mayoría de máquinas.",
+    "stock": 40,
+    "image": "cafe3.jpg"
+  },
+  {
+    "id": "4", 
+    "type": "grano",
+    "name": "Café Sumatra Mandheling",
+    "price": 14.75,
+    "description": "Grano con baja acidez, sabor terroso y ahumado. Tostado oscuro. Perfecto para espresso.",
+    "stock": 10,
+    "image": "cafe4.png"
+  },
+  {
+    "id": "5",  
+    "type": "molido",
+    "name": "Descafeinado Suizo",
+    "price": 10.99,
+    "description": "Proceso de descafeinización natural que mantiene el sabor dulce y suave. Molido medio.",
+    "stock": 18,
+    "image": "cafe5.jpg"
+  }
+]

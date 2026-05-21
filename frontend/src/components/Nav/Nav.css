@@ -1,0 +1,165 @@
+/* src/components/Nav/Nav.css */
+
+nav {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 50px; /* Espacio generoso entre los textos */
+  align-items: center;
+  justify-content: center; /* Centrado en pantalla */
+}
+
+nav li {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #2b1e18; /* Marrón chocolate oscuro intenso */
+  font-weight: 800; /* Letra bien gruesa */
+  font-size: 1.35em;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+  /* Sombra blanca gruesa para que se despegue de la foto */
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+nav a:hover {
+  color: #faf9f6; /* Crema clarito al pasar el mouse */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra oscura en hover */
+}
+
+/* === ICONO DEL CARRITO === */
+.cart-nav-image-icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease;
+  vertical-align: middle;
+  /* Forzamos el ícono del carrito a color chocolate oscuro intenso */
+  filter: brightness(0) sepia(1) saturate(1000%) hue-rotate(340deg)
+    brightness(15%);
+}
+
+.cart-nav-image-icon:hover {
+  transform: scale(1.15);
+}
+
+.cart-item-count-badge {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-left: 6px;
+  background-color: #2b1e18; /* Círculo del contador en color chocolate */
+  padding: 3px 8px;
+  border-radius: 50%;
+}
+
+/* === DROPDOWN (Categorías) === */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background-color: #2b1e18;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  min-width: 180px;
+  padding: 8px 0;
+  border: 1px solid #b89f78;
+}
+
+.nav-dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-content li a {
+  background: none !important;
+  color: #faf9f6 !important;
+  text-shadow: none !important;
+  font-size: 1.15rem;
+  padding: 12px 20px;
+  font-weight: 600;
+}
+
+.dropdown-content li a:hover {
+  background-color: #b89f78 !important;
+  color: #2b1e18 !important;
+}
+
+/* === BOTÓN DE LOGIN (Sin usuario) === */
+.nav-login-button {
+  color: #ffffff !important;
+  background-color: #2b1e18 !important;
+  padding: 10px 25px !important;
+  border-radius: 6px;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+}
+
+.nav-login-button:hover {
+  background-color: #faf9f6 !important;
+  color: #2b1e18 !important;
+  transform: translateY(-2px);
+}
+
+/******************************************************
+ * 👤 BLOQUE DE USUARIO LOGUEADO (Súper Ajustado)
+ ******************************************************/
+.nav-user-container {
+  display: flex;
+  flex-direction: column; /* Uno abajo del otro */
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 5px 10px;
+}
+
+.nav-user-name {
+  font-weight: 800;
+  /* 🌟 IDÉNTICO: Color marrón clarito/caramelo para que se lea perfecto */
+  color: #faf9f6;
+  font-size: 1.15rem; /* Un toque más grandecito */
+  /* Sombra negra nítida detrás para que flote hermoso sobre la foto */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+.nav-logout-button {
+  background: none;
+  border: none;
+  font-size: 0.85rem !important;
+  /* 🌟 IDÉNTICO: Mismo color marrón clarito/caramelo */
+  color: #b89f78 !important;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2px;
+  transition: color 0.2s;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.nav-logout-button:hover {
+  /* 🌟 HOVER: Cambia a crema clarito y brillante al pasar el mouse */
+  color: #faf9f6 !important;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}

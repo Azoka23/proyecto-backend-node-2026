@@ -1,0 +1,13 @@
+/* Asumiendo que va en ItemListContainer.css o ItemList.css */
+
+.item-list {
+    
+    display: flex; 
+    
+    flex-wrap: wrap; 
+    
+    justify-content: center; 
+    
+    gap: 30px; 
+    padding: 20px 0;
+}

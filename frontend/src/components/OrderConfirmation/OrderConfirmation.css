@@ -1,0 +1,82 @@
+
+.confirmation-page {
+    min-height: 80vh;
+    padding: 100px 20px 50px; /* Ajuste para dejar espacio al Header fijo */
+    background-color: #faf9f6; /* Fondo de color crema claro */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea al inicio del contenedor */
+}
+
+.confirmation-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra más profunda */
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border-top: 5px solid #6F4E37; /* Línea de color café oscuro */
+}
+
+.confirmation-container h2 {
+    color: #4a2c2a; /* Color café oscuro */
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.message {
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+/* --- Detalles de la Orden --- */
+.order-details {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f7f3f0; /* Fondo ligeramente más oscuro para resaltar */
+    border-radius: 8px;
+    border: 1px solid #b79075;
+}
+
+.order-details p {
+    margin: 5px 0;
+    color: #4a2c2a;
+    font-size: 1em;
+}
+
+.order-id-display {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #6F4E37; /* Color principal de marca */
+    letter-spacing: 1px;
+    word-break: break-all; /* Asegura que no se desborde en móviles */
+}
+
+/* --- Botón de Retorno a Inicio --- */
+.home-button {
+    display: inline-block;
+    background-color: #b79075; /* Color café claro/beige */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.home-button:hover {
+    background-color: #a47d62;
+    transform: translateY(-1px);
+}
+
+/* --- Responsive Básico --- */
+@media (max-width: 500px) {
+    .confirmation-container {
+        padding: 30px 20px;
+    }
+    .confirmation-page {
+        padding-top: 80px;
+    }
+}

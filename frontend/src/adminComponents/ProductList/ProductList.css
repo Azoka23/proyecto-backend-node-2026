@@ -1,0 +1,265 @@
+/* Contenedor principal */
+.products-container {
+  padding: 20px;
+  color: #222;
+}
+
+/* Título */
+.products-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Contenedor buscador */
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto 20px auto;
+}
+
+/* Ícono lupa */
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #777;
+  pointer-events: none;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.search-box:hover .search-icon {
+  color: #f7b733;
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* Input de búsqueda */
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 38px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Lista de sugerencias */
+.suggestions-list {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 190px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #222;
+  font-weight: 500;
+}
+
+.suggestion-item:hover {
+  background: #6f4e37;
+  color: white;
+}
+
+/* Scroll para sugerencias */
+.suggestions-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestions-list::-webkit-scrollbar-thumb {
+  background: #6f4e37;
+  border-radius: 4px;
+}
+
+/* Grid de productos */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Card de producto */
+.product-card {
+  background: rgba(245, 245, 220, 0.85); /* beige claro semi-opaco */
+  border-radius: 10px;
+  overflow: hidden;
+  padding-bottom: 10px;
+  color: #222;
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.product-card-body {
+  padding: 10px;
+  text-align: center;
+}
+
+.product-name {
+  font-size: 18px;
+  margin: 6px 0;
+}
+
+.product-price {
+  font-weight: bold;
+}
+
+/* Botones */
+.product-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #f7b733;
+  color: black;
+}
+
+.btn-delete {
+  background: #d62828;
+  color: white;
+}
+
+/* Paginación */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Mensaje "No encontrado" */
+.no-results {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+
+/* Floating buttons en esquina superior derecha */
+.floating-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+}
+
+.floating-btn {
+  padding: 6px 10px;         /* más pequeños */
+  border: none;
+  border-radius: 30px;
+  background-color: #a09c90;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;           /* más discreto */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.floating-btn:hover {
+
+  transform: scale(1.1);
+  background-color: #d8bd6a;
+}
+
+.logout-btn {
+  background-color: #a09c90;
+  color: black;
+}
+
+.logout-btn:hover {
+  background-color: #d8bd6a;
+}
+
+/* Contenedor scrollable de tarjetas */
+.products-grid-container {
+  max-height: 60vh; /* o el alto que quieras según tu diseño */
+  overflow-y: auto;
+  padding-right: 10px; /* para evitar que el scrollbar tape contenido */
+  scroll-behavior: smooth;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+/* Modal content */
+.modal-content {
+  background: #f5f1e8;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content label {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.modal-content input {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

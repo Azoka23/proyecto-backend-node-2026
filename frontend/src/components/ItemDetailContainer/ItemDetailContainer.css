@@ -1,0 +1,55 @@
+/* src/components/ItemDetailContainer/ItemDetailContainer.css */
+
+.item-detail-container {
+    background-color: transparent; /* Arena suave, igual que header */
+    min-height: 85vh; 
+    padding: 60px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título del producto */
+.item-detail-container h2 {
+    color: #8b5e3c; /* Cacao intenso */
+    margin-top: 40px;
+    font-size: 2em;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #faf9f6; /* Blanco cálido */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Opcional: detalles internos */
+.item-detail-container .item-description {
+    color: #4b3832; /* Marrón suave */
+    font-size: 1.1em;
+    max-width: 700px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.item-detail-container .item-price {
+    color: #b89f78; /* Oro apagado */
+    font-weight: 700;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* Botones dentro del detalle */
+.item-detail-container button {
+    background-color: #8b5e3c; /* Cacao */
+    color: #faf9f6; /* Blanco cálido */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.item-detail-container button:hover {
+    background-color: #b89f78; /* Oro apagado */
+    transform: scale(1.05);
+}

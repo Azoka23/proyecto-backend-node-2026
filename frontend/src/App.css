@@ -1,0 +1,111 @@
+/* src/App.css */
+
+#root {
+  /*max-width: 1280px;*/
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  /* Aseguramos que #root no tape el fondo */
+  background-color: transparent; 
+}
+
+.app-main-layout {
+
+    width: 100%;
+    
+    max-width: none; 
+    
+    margin: 0; 
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* ------------------------------------------------ */
+/* FONDO DE IMAGEN Y SOLUCIÓN DE CONTRASTE */
+/* ------------------------------------------------ */
+
+body {
+    /* 1. Imagen de Fondo: Sin filtros globales */
+    background-image: url("/images/fondoPrincipal.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed; /* Mantiene la imagen quieta */
+    background-position: center center;
+     
+    /* 2. Propiedades de Contenido */
+    position: relative;
+    z-index: 1; 
+    background-color: #f7f5f3; 
+
+  
+}
+
+
+
+@media (max-width: 600px) {
+    
+    
+    .item-list-container {
+       
+        padding: 20px 10px; 
+        min-height: 60vh; 
+    }
+
+    
+    .item-list-container h1 {
+        font-size: 1.8em; /* De 2.5em a 1.8em para que quepa en una línea */
+        margin-bottom: 20px;
+    }
+    
+    
+    .item-list {
+        
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    
+    .loading-message {
+        font-size: 1.2em;
+    }
+    
+    .error-message {
+        font-size: 1.0em;
+        width: 90%;
+    }
+}

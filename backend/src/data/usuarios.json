@@ -1,0 +1,19 @@
+[
+  {
+    "id": "100",
+    "nombre": "Marcela Admin",
+    "email": "marcela@cafe.com",
+    "password": "admin123",
+    "rol": "admin"
+  },
+  {
+    "id": "101",
+    "nombre": "Juan Cliente",
+    "email": "juan@gmail.com",
+    "password": "user123",
+    "rol": "cliente",
+    "direccion": "Calle Falsa 123",
+    "telefono": "1122334455",
+    "carrito": []
+  }
+]

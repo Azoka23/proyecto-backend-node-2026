@@ -1,0 +1,141 @@
+/* src/components/Checkout/Checkout.css */
+
+.checkout-page {
+    min-height: 80vh;
+    padding: 80px 20px 50px;
+    background-color: #faf9f6; 
+}
+
+.checkout-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto; 
+}
+
+.checkout-container h2 {
+    color: #4a2c2a; 
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #b79075;
+    padding-bottom: 10px;
+}
+
+/* --- Resumen de Orden --- */
+.order-summary {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px dashed #b79075;
+    border-radius: 5px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.order-total {
+    margin-top: 15px;
+    color: #4a2c2a;
+    font-size: 1.5em;
+    text-align: right;
+}
+
+/* --- Formulario (Buyer Form) --- */
+
+/* 🛠️ AJUSTE CLAVE: Aplica Flexbox para alinear y justificar etiquetas/inputs */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Apila la etiqueta y el input */
+    margin-bottom: 20px; /* Espacio entre cada grupo de campo */
+}
+
+.form-group label {
+    text-align: left; /* Asegura que la etiqueta esté justificada a la izquierda */
+    font-weight: bold;
+    color: #4a2c2a;
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
+}
+
+/* 🛠️ CORRECCIÓN DE CLASE: Usamos .buyer-form en lugar de .checkout-form */
+.buyer-form h3 {
+    color: #4a2c2a;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.buyer-form input,
+.buyer-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0; /* Lo maneja .form-group */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    font-size: 1em;
+}
+
+
+/* 🛠️ CORRECCIÓN DE CLASE: Cambiamos .final-buy-button a .confirm-button (usado en el JSX) */
+.confirm-button {
+    width: 100%;
+    background-color: #6F4E37;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.confirm-button:hover {
+    background-color: #4b3832;
+}
+
+/* --- Mensajes de Error --- */
+.error-message {
+    color: #cc0000; 
+    font-size: 0.85em;
+    margin-top: 5px; /* Ajustado para quedar debajo del input */
+    margin-bottom: 0;
+    padding-left: 5px;
+}
+
+/* --- Estilo para carrito vacío --- */
+.checkout-page.empty-cart {
+    text-align: center;
+}
+
+/* 🛠️ CORRECCIÓN DE CLASE: Estilo para el botón de volver (usamos .confirm-button) */
+.checkout-page.empty-cart .confirm-button {
+    background-color: #b79075;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: auto; /* Para que sea más pequeño que el botón principal */
+    display: inline-block;
+}
+
+/* --- AJUSTE RESPONSIVE BÁSICO --- */
+@media (max-width: 500px) {
+    .checkout-page {
+        padding-top: 60px; 
+    }
+    .checkout-container {
+        padding: 20px; 
+    }
+    .order-total {
+        font-size: 1.3em;
+    }
+}

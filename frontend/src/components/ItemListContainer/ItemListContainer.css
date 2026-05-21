@@ -1,0 +1,90 @@
+/* src/components/ItemListContainer/ItemListContainer.css */
+
+/* Contenedor principal de la lista de items */
+.item-list-container {
+    background-color: transparent; /* Arena suave, igual que header */
+    padding: 40px 20px 80px 20px; /* Top/Lat/Bottom */
+    text-align: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+   
+    
+}
+
+/* Título de la sección */
+.item-list-container h1 {
+    color: #8b5e3c; /* Cacao intenso */
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    border-bottom: 2px solid #b89f78; /* Oro apagado */
+    
+    padding-bottom: 10px;
+ text-align: left;
+    margin-left: 0;
+
+}
+
+/* Mensaje de carga */
+.loading-message {
+    font-size: 1.8em;
+    color: #b89f78; /* Oro apagado */
+    margin-top: 50px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Mensaje de error */
+.error-message {
+    font-size: 1.5em;
+    color: #cc0000;
+    background-color: #ffe0e0;
+    border: 1px solid #cc0000;
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+/* Animación para mensajes */
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Lista de items */
+.item-list {
+     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* varias tarjetas por fila */
+    gap: 50px;       /* separación entre tarjetas */
+    width: 100%;     /* ocupa todo el ancho del contenedor */
+    margin: 0;       /* sin margen extra */
+    padding: 0;      /* sin padding extra */
+    box-sizing: border-box;
+    justify-content: start; /* asegura que la primera tarjeta toque el borde izquierdo */
+}
+
+/* Tarjetas individuales */
+.item-card {
+    background-color: #faf9f6; /* Blanco cálido */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.item-card h2 {
+    color: #4b3832; /* Marrón suave */
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.item-card p {
+    color: #7b5e4f; /* Marrón claro */
+    font-size: 1em;
+}
