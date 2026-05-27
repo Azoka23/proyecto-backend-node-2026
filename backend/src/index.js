@@ -6,11 +6,20 @@
 const productosController = require("./controllers/productosController");
 ... (lo mantenemos igual)
 */
-
+import "dotenv/config"; // ✅ Ahora sí, lee el .env antes que nada
+import express from "express";
+import path from "path";
+import cors from "cors";
+import rutasProductos from "./routes/productos.routes.js";
+import rutasVentas from "./routes/ventas.routes.js";
+import rutasUsuarios from "./routes/usuarios.routes.js";
+import bodyParser from "body-parser";
+import authRoutes from "./routes/auth.routes.js";
 // =========================================================================
 //   ETAPA 2: PRE-ENTREGA TECHLAB - FAKESTORE API (ESM)
 //   (Mantenemos el código pero comentamos la ejecución automática)
 // =========================================================================
+
 const API_URL = "https://fakestoreapi.com";
 const ejecutarSistema = async () => {
   /* ... tu lógica de fetch ... */
@@ -22,13 +31,6 @@ const ejecutarSistema = async () => {
 //   Aquí ajustamos para usar TUS RUTAS, TU CONTROLADOR E IMÁGENES
 // =========================================================================
 
-import express from "express";
-import path from "path";
-import cors from "cors"; // ✅ IMPORTADO PARA LA CONEXIÓN CON REACT
-import rutasProductos from "./routes/productos.routes.js";
-import rutasVentas from "./routes/ventas.routes.js";
-import rutasUsuarios from "./routes/usuarios.routes.js";
-
 const app = express();
 const PORT = 3000;
 
@@ -38,7 +40,9 @@ const PORT = 3000;
 app.use(cors());
 
 // Permite que el servidor entienda JSON en el cuerpo de las peticiones (POST/PUT)
-app.use(express.json());
+//app.use(express.json());
+
+app.use(bodyParser.json());
 
 // CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS (IMÁGENES)
 app.use(express.static(path.join(process.cwd(), "public")));
@@ -49,6 +53,7 @@ app.use(express.static(path.join(process.cwd(), "public")));
 app.use("/api", rutasProductos);
 app.use("/api", rutasVentas);
 app.use("/api", rutasUsuarios);
+app.use("/auth", authRoutes);
 // Mantengo tu ruta de productos de la Etapa 2 (Fakestore) por si querés comparar
 app.get("/productos-externos", async (req, res) => {
   try {

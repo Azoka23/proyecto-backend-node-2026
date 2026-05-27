@@ -22,13 +22,13 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // 🔄 FUNCIÓN LOGIN CONECTADA A TU BACKEND REAL Y FIREBASE
+  // 🔄 FUNCIÓN LOGIN CONECTADA A TU NUEVO MIDDLEWARE DE LA CLASE 15
   const login = async (email, password) => {
     try {
       console.log("📡 Enviando credenciales al Backend...", { email });
 
-      // 1. Apuntamos a la ruta real que creamos en tu servidor Node
-      const response = await fetch("http://localhost:3000/api/usuarios/login", {
+      // 1. Apuntamos a la nueva ruta de autenticación con JWT 🔒
+      const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -37,17 +37,16 @@ export const AuthProvider = ({ children }) => {
       const resultado = await response.json();
       console.log("📥 Respuesta de autenticación recibida:", resultado);
 
-      if (response.ok && resultado.status === "success") {
-        // 2. Firebase devuelve "rol". Lo adaptamos a "role" ("administrador") para tu Frontend
+      if (response.ok && resultado.token) {
+        // 2. Armamos el objeto del usuario administrador fijo de la clase
         const usuarioAdaptado = {
-          id: resultado.data.id,
-          nombre: resultado.data.nombre,
-          email: resultado.data.email,
-          role: resultado.data.rol === "admin" ? "administrador" : "cliente",
+          email: email,
+          role: "administrador", // Le ponemos administrador directo para que React habilite las vistas
+          nombre: "Administrador TechLab",
         };
 
-        // 3. Guardamos en localStorage y en el estado de React
-        localStorage.setItem(TOKEN_KEY, "session-activa-firebase");
+        // 3. ¡Guardamos el TOKEN REAL (Bearer ...) en el localStorage! 🎯
+        localStorage.setItem(TOKEN_KEY, resultado.token);
         localStorage.setItem(USER_KEY, JSON.stringify(usuarioAdaptado));
 
         setIsAuthenticated(true);
@@ -55,7 +54,10 @@ export const AuthProvider = ({ children }) => {
 
         return { success: true, user: usuarioAdaptado };
       } else {
-        return { success: false, message: resultado.message };
+        return {
+          success: false,
+          message: resultado.message || "Error de autenticación",
+        };
       }
     } catch (error) {
       console.error("❌ Error de red al intentar loguear:", error);
