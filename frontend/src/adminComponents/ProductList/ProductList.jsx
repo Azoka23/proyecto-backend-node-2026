@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext"; // 🔐 Importamos useAuth para limpiar la sesión
 import {
   getProducts,
   deleteProduct,
@@ -18,6 +19,9 @@ export const ProductList = () => {
   const [editingProduct, setEditingProduct] = useState(null); // 👈 modal
   const [loading, setLoading] = useState(true);
 
+  // Traemos el método logout nativo del contexto
+  const { logout } = useAuth();
+
   const loadProducts = async () => {
     try {
       const data = await getProducts();
@@ -29,15 +33,30 @@ export const ProductList = () => {
     }
   };
 
+  // 🔐 Ajustamos la eliminación pasándole el token real
   const handleDelete = async (id) => {
     if (!window.confirm("¿Seguro que querés borrar este producto?")) return;
-    await deleteProduct(id);
-    loadProducts();
+    try {
+      const token = localStorage.getItem("adminAuthToken");
+      await deleteProduct(id, token); // ← Enviamos el token
+      loadProducts();
+    } catch (error) {
+      console.error(error);
+      alert("Error al eliminar el producto.");
+    }
   };
 
+  // 🚪 Corrección estricta para cerrar sesión desde la lista de productos
   const handleLogout = () => {
-    console.log("Cerrando sesión...");
-    window.location.href = "/";
+    console.log("🔴 Forzando borrado estricto de credenciales de la lista...");
+    localStorage.removeItem("adminAuthToken");
+    localStorage.removeItem("adminUser");
+    if (logout) {
+      logout();
+    }
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 100);
   };
 
   useEffect(() => {
@@ -90,13 +109,23 @@ export const ProductList = () => {
     setEditingProduct((prev) => ({ ...prev, [name]: value }));
   };
 
+  // 🔐 Ajustamos el guardado pasándole el token real
   const handleSaveChanges = async () => {
     try {
-      await updateProduct(editingProduct.id, editingProduct);
+      const token = localStorage.getItem("adminAuthToken");
+      // Convertimos el precio a número para que no rompa el backend
+      const updatedData = {
+        ...editingProduct,
+        price: Number(editingProduct.price),
+      };
+
+      await updateProduct(editingProduct.id, updatedData, token); // ← Enviamos los campos y el token
+      alert("¡Producto actualizado con éxito!");
       setEditingProduct(null);
       loadProducts();
     } catch (error) {
       console.error(error);
+      alert("Hubo un problema al intentar guardar los cambios.");
     }
   };
 
@@ -151,7 +180,6 @@ export const ProductList = () => {
           {filtered.length > 0 &&
             paginated.map((p) => (
               <div key={p.id} className="product-card">
-                {/* 🛠️ AJUSTE DE RUTA INTELIGENTE PARA IMÁGENES */}
                 <img
                   src={
                     p.image

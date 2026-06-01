@@ -27,10 +27,11 @@ router.post("/login", (req, res) => {
     // Generamos el token con el email que inició sesión y el rol de administrador
     const token = generateToken({ email: email, role: "admin" });
 
-    // Devolvemos el token en formato Bearer como pide la consigna
+    // 🚀 CORRECCIÓN CLAVE: Devolvemos el token LIMPIO.
+    // Tu frontend y tu middleware se encargan de manejar el prefijo Bearer en los encabezados.
     return res.status(200).json({
       message: "Autenticación exitosa",
-      token: `Bearer ${token}`,
+      token: token, // ← Quitamos el `Bearer ` de acá adentro para que no se duplique ni se rompa
     });
   } else {
     // Si fallan las credenciales, tiramos error 401 (No autorizado) tal como exige el Trabajo Final

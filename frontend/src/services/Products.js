@@ -2,6 +2,7 @@
 const BASE_URL = "http://localhost:3000/api/productos";
 
 // --- 1. FUNCIÓN PARA LEER Y FILTRAR (READ) ---
+// Sigue siendo de acceso público para tus clientes en la tienda, no requiere token
 export const getProducts = async (categoryId = null) => {
   const res = await fetch(BASE_URL);
 
@@ -10,11 +11,8 @@ export const getProducts = async (categoryId = null) => {
   }
 
   const responseJson = await res.json();
-
-  // Accedemos a .data porque tu servidor de Node lo manda así
   const listaProductos = responseJson.data || [];
 
-  // Filtramos por categoría si existe
   if (categoryId) {
     return listaProductos.filter((producto) => producto.type === categoryId);
   }
@@ -23,17 +21,21 @@ export const getProducts = async (categoryId = null) => {
 };
 
 // --- 2. FUNCIÓN PARA CREAR UN PRODUCTO (CREATE) ---
-export const createProduct = async (product) => {
+// 🔐 Ahora recibe el 'token' enviado desde el formulario contenedor
+export const createProduct = async (product, token) => {
   const res = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // 🎯 Inyectamos la credencial JWT blindada
     },
     body: JSON.stringify(product),
   });
 
   if (!res.ok) {
-    throw new Error("No se pudo crear el producto.");
+    throw new Error(
+      "No se pudo crear el producto. Verifique sus credenciales de administrador.",
+    );
   }
 
   const result = await res.json();
@@ -41,19 +43,21 @@ export const createProduct = async (product) => {
 };
 
 // --- 3. FUNCIÓN PARA ACTUALIZAR UN PRODUCTO (UPDATE) ---
-export const updateProduct = async (id, updatedFields) => {
+// 🔐 Ahora recibe el 'token' enviado desde el formulario contenedor
+export const updateProduct = async (id, updatedFields, token) => {
   const URL_WITH_ID = `${BASE_URL}/${id}`;
 
   const res = await fetch(URL_WITH_ID, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // 🎯 Inyectamos la credencial JWT blindada
     },
     body: JSON.stringify(updatedFields),
   });
 
   if (!res.ok) {
-    throw new Error(`No se pudo actualizar el producto con ID: ${id}`);
+    throw new Error(`No se pudo actualizar el producto. ID: ${id}`);
   }
 
   const result = await res.json();
@@ -61,11 +65,15 @@ export const updateProduct = async (id, updatedFields) => {
 };
 
 // --- 4. FUNCIÓN PARA ELIMINAR UN PRODUCTO (DELETE) ---
-export const deleteProduct = async (id) => {
+// 🔐 También le agregamos protección para cuando uses la papelera de reciclaje en la lista
+export const deleteProduct = async (id, token) => {
   const URL_WITH_ID = `${BASE_URL}/${id}`;
 
   const res = await fetch(URL_WITH_ID, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`, // 🎯 Exigimos el token para borrar
+    },
   });
 
   if (!res.ok) {
@@ -76,6 +84,7 @@ export const deleteProduct = async (id) => {
 };
 
 // --- 5. FUNCIÓN PARA LEER UN SOLO PRODUCTO POR ID (READ ONE) ---
+// Sigue siendo pública para ver el detalle de un café en la tienda
 export const getProductById = async (id) => {
   const URL_WITH_ID = `${BASE_URL}/${id}`;
 
@@ -86,7 +95,5 @@ export const getProductById = async (id) => {
   }
 
   const responseJson = await res.json();
-
-  // Si el servidor devuelve {status: "success", data: {...}} sacamos el data
   return responseJson.data ? responseJson.data : responseJson;
 };

@@ -3,73 +3,94 @@
 /* =============================== */
 
 .login-page {
-    min-height: 80vh;
-    padding: 100px 20px 50px;
-    background-color: #faf9f6; 
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; 
+  min-height: 80vh;
+  padding: 100px 20px 50px;
+  background-color: #faf9f6;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .login-container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    border-top: 4px solid #b79075;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  border-top: 4px solid #b79075;
 }
 
 .login-container h2 {
-    color: #4a2c2a; 
-    margin-bottom: 20px;
-    padding-bottom: 10px;
+  color: #4a2c2a;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .login-form .form-group {
-    display: flex;
-    flex-direction: column; 
-    margin-bottom: 20px;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .login-form label {
-    font-weight: bold;
-    color: #4a2c2a;
-    margin-bottom: 5px;
+  font-weight: bold;
+  color: #4a2c2a;
+  margin-bottom: 5px;
 }
 
 .login-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; 
-    font-size: 1em;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
 }
 
 .login-button {
-    width: 100%;
-    background-color: #6F4E37; /* Café oscuro */
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.2s;
-    margin-top: 10px;
+  width: 100%;
+  background-color: #6f4e37; /* Café oscuro */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.2s;
+  margin-top: 10px;
 }
 
 .login-button:hover {
-    background-color: #4b3832;
+  background-color: #4b3832;
 }
 
 .error-message {
-    color: #cc0000; 
-    font-size: 0.9em;
-    margin-top: -10px; 
-    margin-bottom: 15px;
+  color: #cc0000;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+/* Contenedor relativo para agrupar el input de password y el botón del ojo */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Estilo para que el emoji quede flotando a la derecha adentro del input */
+.toggle-password-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }

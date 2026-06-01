@@ -18,6 +18,14 @@ export const authenticateToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
     // Si el token expiró o es falso, tiramos error 403 (Prohibido)
     if (err) {
+      // 🚨 AGREGAMOS ESTOS LOGS PARA VER EL ERROR EN LA TERMINAL DEL BACKEND
+      console.log("❌ ERROR EN EL MIDDLEWARE DE AUTENTICACIÓN:");
+      console.log("Detalle del error:", err.message);
+      console.log(
+        "Token recibido en el Back:",
+        token ? "Sí (comienza con " + token.substring(0, 10) + "...)" : "No",
+      );
+
       return res.status(403).json({ message: "Token inválido o expirado." });
     }
 

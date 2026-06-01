@@ -12,18 +12,21 @@ export const Registro = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // Estado para deshabilitar botones al enviar
+
+  // 👁️ Estados independientes para mostrar/ocultar cada contraseña
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.id]: e.target.value });
   };
 
-  // 🔄 Modificamos el handleSubmit para que sea ASYNC y hable con Node
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    // Validación básica de contraseñas igual que antes
     if (userData.password !== userData.confirmPassword) {
       setError("Las contraseñas no coinciden");
       return;
@@ -33,7 +36,6 @@ export const Registro = () => {
     try {
       console.log("📡 Enviando datos de registro al Backend...", userData);
 
-      // Conexión real con tu servidor Node local
       const response = await fetch(
         "http://localhost:3000/api/usuarios/registro",
         {
@@ -53,7 +55,7 @@ export const Registro = () => {
 
       if (response.ok && resultado.status === "success") {
         alert("¡Registro exitoso en Firebase! Ahora podés iniciar sesión.");
-        navigate("/login"); // Te manda a loguearte con tu nueva cuenta
+        navigate("/login");
       } else {
         setError(resultado.message || "Error al registrar usuario");
       }
@@ -101,26 +103,50 @@ export const Registro = () => {
 
           <div className="form-group">
             <label htmlFor="password">Contraseña:</label>
-            <input
-              type="password"
-              id="password"
-              value={userData.password}
-              onChange={handleChange}
-              required
-              disabled={loading}
-            />
+            {/* 👁️ Primer contenedor relativo con ojo interactivo */}
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={userData.password}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                style={{ paddingRight: "40px" }}
+              />
+              <button
+                type="button"
+                className="toggle-password-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                disabled={loading}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={userData.confirmPassword}
-              onChange={handleChange}
-              required
-              disabled={loading}
-            />
+            {/* 👁️ Segundo contenedor relativo con ojo interactivo */}
+            <div className="password-wrapper">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                value={userData.confirmPassword}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                style={{ paddingRight: "40px" }}
+              />
+              <button
+                type="button"
+                className="toggle-password-btn"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                disabled={loading}
+              >
+                {showConfirmPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
 
           {error && <p className="error-message">{error}</p>}

@@ -6,6 +6,8 @@ import "./Login.css";
 export const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  // 👁️ Estado para alternar la visibilidad de la contraseña
+  const [showPassword, setShowPassword] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -21,12 +23,10 @@ export const Login = () => {
     const result = await login(credentials.email, credentials.password);
 
     if (result.success) {
-      // 🔀 LÓGICA DE REDIRECCIÓN SEGÚN ROL:
-      // Usamos result.user que viene del simulacro que armamos en AuthContext
       if (result.user.role === "administrador") {
         navigate("/admin");
       } else {
-        navigate("/"); // Si es un cliente común, vuelve a la tienda
+        navigate("/");
       }
     } else {
       setError(result.message || "Credenciales incorrectas");
@@ -61,13 +61,24 @@ export const Login = () => {
 
           <div className="form-group">
             <label htmlFor="password">Contraseña:</label>
-            <input
-              type="password"
-              id="password"
-              value={credentials.password}
-              onChange={handleChange}
-              required
-            />
+            {/* Usamos el wrapper para que el botón se posicione bien mediante CSS */}
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"} // ← Cambia dinámicamente el tipo de input
+                id="password"
+                value={credentials.password}
+                onChange={handleChange}
+                required
+                style={{ paddingRight: "40px" }} // Margen interno derecho para que las letras no pisen el ojo
+              />
+              <button
+                type="button"
+                className="toggle-password-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
 
           {error && <p className="error-message">{error}</p>}

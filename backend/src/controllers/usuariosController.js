@@ -1,5 +1,6 @@
 // src/controllers/usuariosController.js
 import Usuario from "../models/usuariosModel.js";
+import jwt from "jsonwebtoken"; // 🔐 IMPORTANTE: Importamos la librería para fabricar el token real
 
 export const login = async (req, res) => {
   try {
@@ -7,9 +8,22 @@ export const login = async (req, res) => {
     const usuarioEncontrado = await Usuario.findByCredentials(email, password);
 
     if (usuarioEncontrado) {
+      // 🎯 FABRICAMOS EL TOKEN REAL JWT CON LOS DATOS DEL ADMIN
+      // Usamos la misma clave secreta que busca tu middleware: process.env.JWT_SECRET_KEY
+      const tokenReal = jwt.sign(
+        {
+          id: usuarioEncontrado.id,
+          email: usuarioEncontrado.email,
+          rol: usuarioEncontrado.rol || "administrador",
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "2h" }, // El token va a durar 2 horas activo
+      );
+
       return res.status(200).json({
         status: "success",
         data: usuarioEncontrado,
+        token: tokenReal, // 🚀 LE ENVIAMOS EL TOKEN JWT REAL A REACT
         message: "¡Bienvenido/a a TechLab Café!",
       });
     } else {
@@ -35,12 +49,10 @@ export const registrarUsuario = async (req, res) => {
     const lista = await Usuario.getAll();
     const existe = lista.find((u) => u.email === email);
     if (existe) {
-      return res
-        .status(400)
-        .json({
-          status: "error",
-          message: "El email ya se encuentra registrado.",
-        });
+      return res.status(400).json({
+        status: "error",
+        message: "El email ya se encuentra registrado.",
+      });
     }
 
     const nuevoUsuario = await Usuario.create(req.body);
